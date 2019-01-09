@@ -86,7 +86,7 @@ while test $# -gt 0; do
 			shift
 			;;	
 		-ap)
-			ps -aux > $cwd/allActiveProcess.txt
+			ps -ux > $cwd/allActiveProcess.txt
 			echo "Completed"
 			shift
 			;;
@@ -108,7 +108,7 @@ while test $# -gt 0; do
 				echo "OS is unknow"	
 			fi
 		
-			ps -aux > $cwd/allActiveProcess.txt
+			ps -ux > $cwd/allActiveProcess.txt
 			echo "Completed"
 			shift
 			;;
