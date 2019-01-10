@@ -40,22 +40,22 @@ while test $# -gt 0; do
 			echo "-hof shows all files including hidden files"
 			echo "-p shows all installed packages"
 			echo "-ap shows all active process"
-			echo "-all execute all commands --- max depth is 3 "
+			echo "-all execute all commands "
 			exit 0
 		        ;;
-#Shows structure of filesystem at the chosen depth level
+#Shows structure of filesystem 
 		-f)
-		    echo "Set the depth level"	
-		    read choice	
-		    (find . -maxdepth $choice > $cwd/filesystemStructure.txt) &>/dev/null
+		    #echo "Set the depth level"	
+		    #read choice	
+		    (df --output=source > $cwd/filesystemStructure.txt) &>/dev/null
 		    echo "Completed"
 		    shift
 		    ;;	
-#Shows all files at the chocen depth level
+#Shows all files 
 		-of)
-			echo "Set the depth level"	
-		        read choice	
-			(find . -maxdepth $choice -type f > $cwd/allFilesWithoutHidden.txt) &>/dev/null
+			#echo "Set the depth level"	
+		        #read choice	
+			(ls -pR /root > $cwd/allFilesWithoutHidden.txt) &>/dev/null
 			echo "Completed"
 			shift
 			;;
@@ -91,8 +91,8 @@ while test $# -gt 0; do
 			shift
 			;;
 		-all)
-			(find . -maxdepth 3 > $cwd/filesystemStructure.txt) &>/dev/null	
-			(find . -maxdepth 3 -type f > $cwd/allFilesWithoutHidden.txt) &>/dev/null
+			(df --output=source > $cwd/filesystemStructure.txt) &>/dev/null	
+			(ls -pR /root > $cwd/allFilesWithoutHidden.txt) &>/dev/null
 			if [[ $OS =~ "Debian" ]]
 			then
 				dpkg --list > $cwd/allAInstalledPkg.txt
