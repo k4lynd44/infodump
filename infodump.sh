@@ -18,7 +18,7 @@ OS=`cat /etc/redhat-release`
 elif [ -e /etc/SuSE-release ]; then
 OS=`cat /etc/SuSE-release |head -n1`
 elif [ -e /etc/gentoo-release ]; then
-OS=`< /etc/gentoo-release`
+OS=`cat /etc/gentoo-release`
 else
 OS='unknown'
 fi
@@ -47,7 +47,7 @@ while test $# -gt 0; do
 		-f)
 		    #echo "Set the depth level"	
 		    #read choice	
-		    (df --output=source > $cwd/filesystemStructure.txt) &>/dev/null
+		    (ls -aR /root | grep ":$" | sed -e's/:$//' > $cwd/filesystemStructure.txt) &>/dev/null
 		    echo "Completed"
 		    shift
 		    ;;	
@@ -86,12 +86,12 @@ while test $# -gt 0; do
 			shift
 			;;	
 		-ap)
-			ps -ux > $cwd/allActiveProcess.txt
+			ps -e> $cwd/allActiveProcess.txt
 			echo "Completed"
 			shift
 			;;
 		-all)
-			(df --output=source > $cwd/filesystemStructure.txt) &>/dev/null	
+			(ls -aR /root | grep ":$" | sed -e's/:$//' > $cwd/filesystemStructure.txt) &>/dev/null	
 			(ls -pR /root > $cwd/allFilesWithoutHidden.txt) &>/dev/null
 			if [[ $OS =~ "Debian" ]]
 			then
@@ -108,7 +108,7 @@ while test $# -gt 0; do
 				echo "OS is unknow"	
 			fi
 		
-			ps -ux > $cwd/allActiveProcess.txt
+			ps -e > $cwd/allActiveProcess.txt
 			echo "Completed"
 			shift
 			;;
