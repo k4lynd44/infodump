@@ -47,7 +47,7 @@ while test $# -gt 0; do
 		-f)
 		    #echo "Set the depth level"	
 		    #read choice	
-		    (ls -aR /root | grep ":$" | sed -e's/:$//' > $cwd/filesystemStructure.txt) &>/dev/null
+		    (ls -aR / | grep ":$" | sed -e's/:$//' > $cwd/filesystemStructure.txt) &>/dev/null
 		    echo "Completed"
 		    shift
 		    ;;	
@@ -55,7 +55,7 @@ while test $# -gt 0; do
 		-of)
 			#echo "Set the depth level"	
 		        #read choice	
-			(ls -pR /root > $cwd/allFilesWithoutHidden.txt) &>/dev/null
+			(ls -pR / > $cwd/allFilesWithoutHidden.txt) &>/dev/null
 			echo "Completed"
 			shift
 			;;
@@ -91,8 +91,8 @@ while test $# -gt 0; do
 			shift
 			;;
 		-all)
-			(ls -aR /root | grep ":$" | sed -e's/:$//' > $cwd/filesystemStructure.txt) &>/dev/null	
-			(ls -pR /root > $cwd/allFilesWithoutHidden.txt) &>/dev/null
+			(ls -aR / | grep ":$" | sed -e's/:$//' > $cwd/filesystemStructure.txt) &>/dev/null	
+			(ls -pR / > $cwd/allFilesWithoutHidden.txt) &>/dev/null
 			if [[ $OS =~ "Debian" ]]
 			then
 				dpkg --list > $cwd/allAInstalledPkg.txt
