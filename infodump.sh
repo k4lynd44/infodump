@@ -73,9 +73,9 @@ while test $# -gt 0; do
 				echo "Completed"
 				
 			elif [[ $OS =~ "RedHat" || $OS =~ "Fedora" || $OS =~ "CentOS" ]]
-				echo "Completed"
 			then
 				rpm -qa > $cwd/allAInstalledPkg.txt
+				echo "Completed"
 			elif [[ $OS =~ "Gentoo" ]]
 			then
 				ls -d /var/db/pkg/*/*| cut -f5- -d/ > $cwd/allAInstalledPkg.txt
